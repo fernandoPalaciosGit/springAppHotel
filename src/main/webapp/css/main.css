@@ -1,0 +1,116 @@
+.table{ display: none; }
+.upload, .stateAjax{ font-weight: bold; }
+.stateAjax{ 
+	color: green;
+	top: 20px;
+	position: relative;
+	z-index: 110;
+ }
+.upload{ color: red; }
+.noData{ font-size: 75%; color: rgb(200, 200, 200); }
+.progress_outer {
+    height: 20px;
+	border: 1px solid rgb(0, 0, 0);
+	position: relative;
+	z-index: 100;
+}
+.progress {
+	position: absolute;
+	height: 100%;
+	width: 0%;
+	background: rgb(222, 222, 222);
+}
+.table-responsive{
+	overflow-x: auto;
+	border: none;
+	top: 40px;
+}
+.page-header{
+	border-bottom: none;
+}
+form>div:last-child>div:last-child{
+	margin-top: 5px;
+}
+div.table-responsive.col-sm-12.col-md-12.col-lg-12, 
+th {
+	text-align: center !important;
+	vertical-align: middle !important;
+}
+td {
+	vertical-align: middle !important;
+}
+th:first-letter {
+	text-transform: uppercase;
+}
+div.input-group.btn-block.col-xs-12.col-sm-12.col-md-12.col-lg-12:last-child span.input-group-addon {
+	padding: 6px 14px !important;
+}
+.order{
+	font-size: 0.9em;
+}
+tbody > tr > td:nth-of-type(2),
+span.order,
+span.caret{
+	color: rgb(158, 18, 18) !important;
+}
+@media screen and (max-width: 768px) { /*@screen-xs | tablets, movil*/
+	form>div:last-child>.col-xs-12:first-child{
+		margin-top: 20px;
+	}
+}
+tbody>tr{
+	border-top: 50px solid rgb(255, 255, 255);
+}
+.January{ background-color: rgba(0,128,128, 0.7); }
+.February{ background-color: rgba(0,255,255, 0.7); }
+.March{ background-color: rgba(224,255,255, 0.7); }
+.April{ background-color: rgba(0,206,209, 0.7); }
+.May{ background-color: rgba(64,224,208, 0.7); }
+.June{ background-color: rgba(175,238,238, 0.7); }
+.July{ background-color: rgba(127,255,212, 0.7);  }
+.August{ background-color: rgba(95,158,160, 0.7); }
+.September{ background-color: rgba(100,149,237, 0.7); }
+.October{ background-color: rgba(0,191,255, 0.7); }
+.November{ background-color: rgba(173,216,230, 0.7); }
+.December{ background-color: rgba(135,206,250, 0.7); }
+
+/* no se puede seleccionar el primer elemento hijo a traves de su clase */
+tbody>tr:first-child,
+.January ~ .January,
+.February ~ .February,
+.March ~ .March,
+.April ~ .April,
+.May ~.May,
+.June ~ .June,
+.July ~ .July,
+.August ~.August,
+.September ~ .September,
+.October ~ .October,
+.November ~ .November,
+.December ~.December
+{
+/* 	no se puede aumentar el espacio de margin especifico de un tr */
+    border-top: none;
+}
+tr{ position: relative; }
+td[data-month]:before{
+	content: attr(data-month);
+	display: block;
+	position: absolute;
+	left: 10px;
+	z-index: 150;
+	-webkit-transform: rotateZ(-60deg);
+	-moz-transform: rotateZ(-60deg);
+	-webkit-transform: rotateZ(-60deg);
+	letter-spacing: 1px;
+}
+tbody>tr>td:first-child {
+	font-weight: bold;
+	z-index: 200;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 28px;        /*Make inputs at least the height of their button counterpart*/
+  .box-sizing(border-box); /*Makes inputs behave like true block-level elements*/
+}
