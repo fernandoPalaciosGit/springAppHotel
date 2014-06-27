@@ -46,13 +46,14 @@ div.input-group.btn-block.col-xs-12.col-sm-12.col-md-12.col-lg-12:last-child spa
 	padding: 6px 14px !important;
 }
 .order{
-	font-size: 0.9em;
-}
-tbody > tr > td:nth-of-type(2),
-span.order,
-span.caret{
+	font-size: 1.2em;
 	color: rgb(158, 18, 18) !important;
 }
+/* tbody > tr > td:nth-of-type(2), */
+/* span.order, */
+/* span.caret{ */
+/* 	color: rgb(158, 18, 18) !important; */
+/* } */
 @media screen and (max-width: 768px) { /*@screen-xs | tablets, movil*/
 	form>div:last-child>.col-xs-12:first-child{
 		margin-top: 20px;

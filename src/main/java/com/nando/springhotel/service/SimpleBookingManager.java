@@ -28,8 +28,8 @@ public class SimpleBookingManager implements BookingManager {
 	}
 	
 	//recuperara la lista de productos
-	public List<Booking> getBooking(String initBooking, String lastBooking) {
-		return bookingDao.getBookingList(initBooking, lastBooking);		
+	public List<Booking> getBooking(String initBooking, String lastBooking, String filter_type) {
+		return bookingDao.getBookingList(initBooking, lastBooking, filter_type);		
 	}
 
 	public List<String> getHotelName(Integer idHotel) {

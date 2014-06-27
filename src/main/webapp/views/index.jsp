@@ -46,8 +46,14 @@
 					
 					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-							<input 	type="submit" id="btnBookingRequest" 
-									class="btn btn-success btn-block" value="buscar reservas">
+							<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+								<input 	type="submit" value="filtro por fecha" data-filter="fecha"
+										class="btnBookingRequest btn btn-success btn-block">
+							</div>
+							<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+								<input 	type="submit" value="filtro por hoteles" data-filter="hotel"
+										class="btnBookingRequest btn btn-success btn-block">
+							</div>
 						</div>
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 							<a 	href='<c:url value="/insertBooking.html"/>' 
@@ -62,12 +68,9 @@
 					<thead>
 						<tr>
 							<th>reserva</th>
-							<th>
-								<span class="order">fecha de reserva</span><br/>
-								<span class="caret"></span>
-							</th>
+							<th class="fecha filter">fecha de reserva</th>
 							<th>destino turistico</th>
-							<th>hotel</th>
+							<th class="hotel filter">hotel</th>
 							<th>precio de coste</th>
 							<th>precio de venta</th>
 							<th>beneficio</th>

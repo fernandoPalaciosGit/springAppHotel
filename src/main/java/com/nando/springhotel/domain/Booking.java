@@ -2,6 +2,8 @@ package com.nando.springhotel.domain;
 
 import java.io.Serializable;
 
+
+
 //mapeo de la base de datos
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "booking")
@@ -22,6 +27,8 @@ public class Booking implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
+	//@NotEmpty
+	//@NotNull
 	private Integer hotel_id;
 	private String booking_ref;
 	private String booking_date;

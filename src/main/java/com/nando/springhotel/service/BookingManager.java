@@ -8,7 +8,7 @@ import com.nando.springhotel.domain.Hotel;
 
 public interface BookingManager extends Serializable {
 	
-	public List<Booking> getBooking(String initBooking, String lastBooking);
+	public List<Booking> getBooking(String initBooking, String lastBooking, String filter_type);
 	public List<String> getHotelName(Integer idHotel);
 	public List<Hotel> getAllHotel();
 	public void insertBooking(Booking newBooking);

@@ -57,12 +57,15 @@ public class CRSController{
 	public @ResponseBody
 	List<Object> loadBooking
 	(	@RequestParam ("initBooking") String initBooking, 
-		@RequestParam ("lastBooking") String lastBooking ) {
+		@RequestParam ("lastBooking") String lastBooking,
+		@RequestParam ("filter_type") String filter_type
+		) {
 		
-		List<Booking> myBookings = this.bookingManager.getBooking( initBooking, lastBooking);
+		List<Booking> myBookings = this.bookingManager.getBooking( initBooking, lastBooking, filter_type);
+		
 		System.out.println(myBookings); //print toString @override
 		System.out.println(myBookings.getClass()); //class java.util.ArrayList
-		System.out.println("PARAM_REQUEST: "+initBooking+"&"+lastBooking);
+		System.out.println("PARAM_REQUEST: "+initBooking+"&"+lastBooking+"&"+filter_type);
 		
 		List<Object> printBooking = new ArrayList<Object>();
 		//devolvemos los datos, en orden (LinkedHashMap), que imprimiremos en la tabla recuperada por ajax
@@ -71,6 +74,7 @@ public class CRSController{
 			
 			//obtener el nombre del hotel (de otra tabla)
 			List<String> hotelName = this.bookingManager.getHotelName(myBookings.get(i).getHotel_id());
+			
 			book.put("reserva", myBookings.get(i).getReference());
 			book.put("fecha_reserva", myBookings.get(i).getBookingDate());
 			book.put("destino", myBookings.get(i).getDestination());

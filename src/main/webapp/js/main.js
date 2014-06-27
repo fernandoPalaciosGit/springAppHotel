@@ -1,7 +1,7 @@
 var	AJAX = {
 		xhr: null,
 		countdown: null,
-		timeoutAjax : 3000, //limite de tiempo de espera de petición
+		timeoutAjax : 3500, //limite de tiempo de espera de petición
 		shim: function(){
 			if( window.XMLHttpRequest )
 				this.xhr = new XMLHttpRequest();
@@ -23,31 +23,50 @@ var	AJAX = {
 
 var init = function(){
 	AJAX.shim();
-	if( AJAX.xhr ){
-		document.querySelector("#btnBookingRequest")
-				.addEventListener("click", bookingRequest, false);
-	} else
-		AJAX.stateAjax.innerText = "Este navegador no soporta peticiones asíncronas";
+	//seleccionar tipo de filtro: .btnBookingRequest
+	$(".btnBookingRequest").on("click", function(e_click){
+		e_click.preventDefault();
+		var type_filter = $(this).data("filter");
+		
+		if( AJAX.xhr ){
+			bookingRequest(type_filter);
+		} else
+			AJAX.stateAjax.innerText = "Este navegador no soporta peticiones asíncronas";
+		
+	});
 };
 
-var bookingRequest = function(e_click){
+var bookingRequest = function(filter){
 	if( document.forms[0].checkValidity() ){
-		$(".table").hide();
+		console.log(filter);
 		
+		//configuramos parametros de peticion
+		var formData = $('form').serializeArray();
+		formData.push( {name: "filter_type", value: filter} );
+		var filter_param = "";
+		for ( var param in formData) {
+			var key = formData[param].name;
+			var value = formData[param].value;
+			filter_param += key+"="+value+"&";
+		}
+		filter_param = filter_param.slice(0, -1);
+		console.log(filter_param);
+		$(".table").hide();
 		AJAX.xhr = $.ajax({
 			//tipo de dato devuelto por el server
 			dataType: 'json',
 			//tipo de documeto del cliente
 			contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-			url : this.form.action,
+			url : $("form")[0].action,
 			//modificar encabezado de peticion, tipo de documento del servidor
 			headers: { Accept: 'application/json;charset=UTF-8' },
 			
-			data : $("form").serialize(),
-			type : this.form.method,
+			data : filter_param,
+			type : $("form")[0].method,
 			timeout: AJAX.timeoutAjax,
 			beforeSend: function(xhr, settings){
 				console.dir(settings); //configuracion de encabezados
+				$(".filter").removeClass("order");
 				AJAX.stateAjax.innerText = "Buscando Reservas...";
 				AJAX._progress.style.width = "0%";
 				// vaciamos el layer de las peticiones
@@ -76,6 +95,14 @@ var bookingRequest = function(e_click){
 		    },
 		    complete :function(){
 		    	//simpre se ejecuta,haya o no error
+		    	//controlar el tipo de filtro
+		    	var filterTag = $("."+filter);
+		    	filterTag.addClass("order");
+//		    	.fecha
+//		    	.hotel
+//		    	<span class="order">fecha de reserva</span><br/>
+//				<span class="caret"></span>
+		    
 		    },
 		    xhr: function(){
 		    	// get the native XmlHttpRequest object

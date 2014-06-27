@@ -33,14 +33,24 @@ public class JPABookingDao implements BookingDao{
 	//recupero todos los productos en stock
 	@Transactional(readOnly = true)
 	@SuppressWarnings("unchecked")
-	public List<Booking> getBookingList(String initBooking, String lastBooking){
+	public List<Booking> getBookingList(String initBooking, String lastBooking, String filter_type){
 		//FROM class Product  -> p.id [son las propiedades de la clese]
 		/*NOTA HQL: si hacemos select de atributos de registros, 
 		no nos devolvera el objeto inicializado, sino una lista de objetos con propiedades, dentro de un array*/
-		String query = 	  "SELECT b FROM Booking b "	//cada registro corresponde con un <Booking>
-						+ "WHERE b.booking_date >= '"+initBooking+"' "
-						+ "AND b.booking_date < '"+lastBooking+"' "
-						+ "ORDER BY b.booking_date ASC";
+		
+		String query = new String();
+		if ( "fecha".equals(filter_type) ){ //FILTRO POR FECHA
+			query = 	  "SELECT b FROM Booking b "	//cada registro corresponde con un <Booking>
+					+ "WHERE b.booking_date >= '"+initBooking+"' "
+					+ "AND b.booking_date < '"+lastBooking+"' "
+					+ "ORDER BY b.booking_date ASC";
+			
+		}else if ( "hotel".equals(filter_type) ){	//FILTRO POR HOTEL DE DESTINO
+			query = 	  "SELECT b FROM Booking b "	//cada registro corresponde con un <Booking>
+					+ "WHERE b.booking_date >= '"+initBooking+"' "
+					+ "AND b.booking_date < '"+lastBooking+"' "
+					+ "ORDER BY b.hotel_id ASC";
+		}
 		
 		System.out.println(query);
 		Query q = em.createQuery( query );
